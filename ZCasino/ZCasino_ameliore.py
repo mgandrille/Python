@@ -1,3 +1,5 @@
+import os
+
 # ****** programme du jeu de la roulette **********
 print("Bienvenue au ZCasino, voici le jeu de la Roulette !")
 import random
@@ -79,3 +81,4 @@ while j != 0 :
                         print("Au revoir et à bientôt au ZCasino ")
                         j=0
 
+os.system("pause")   # met en pause le système Windows
