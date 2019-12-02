@@ -40,10 +40,10 @@ print("A vous de le trouver ! ")
 #boucle à mettre (variable = coups joués)
 chance = 8
 while chance > 0 :
-    lettre = input("\nTapez une lettre :   ")
+    choix_lettre = input("\nTapez une lettre :   ")
     # recherche dans le mot si lettre est présente (1 fois ou plusieurs fois)
-    rech_lettre = m.find(lettre)
-    compte_lettre = m.count(lettre)
+    rech_lettre = m.find(choix_lettre)
+    compte_lettre = m.count(choix_lettre)
     print("recherche = ", rech_lettre, "et nb de lettre = ", compte_lettre) #********** A SUPPRIMER ************
     if rech_lettre < 0:
         # si oui, continuer en disant que ce n'est pas la bonne lettre et 1 chance en moins
@@ -51,9 +51,10 @@ while chance > 0 :
         chance = chance -1
     else :
         # si non, remplacer * par lettre et pas d'impact sur nb de chances
-        for lettre in mot_mystere :
-            mot_mystere = m.split("*")
-            print("1")
+        for choix_lettre in m :
+            p1 = m[:rech_lettre].replace(choix_lettre, "*")
+            p2 = m[rech_lettre:].replace(choix_lettre, "*")
+            mot_mystere = p1 + m[rech_lettre] + p2
             print(mot_mystere)
 #            print(" {} ". format(mystere))
             chance = chance
