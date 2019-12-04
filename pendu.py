@@ -22,6 +22,7 @@ while j!=0:
         joueur.write(pseudo)
         print ("Bonjour", pseudo, ", vous n'avez pas de score enregistré")
         joueur.close()
+        score = 0
         j=0
 
 # ***** enregistrement des joueurs *****
@@ -37,12 +38,12 @@ print("le mot est :", m) #********** A SUPPRIMER ************
 long = len(m)
 print("\nLe mot mystère comporte ", long, " lettres à trouver :")
 # *** extraire le mot sous forme de liste par lettre
-for lettre in m :
-    mon_mot = [ lettre for lettre in m]
-    print("mon mot", mon_mot) #********** A SUPPRIMER ************
-    # *** remplacer lettres par *
-    mystere = [" * " for lettre in mon_mot]
-    print(*mystere)
+#for lettre in m :
+mon_mot = [ lettre for lettre in m]
+#print("mon mot", mon_mot) #********** A SUPPRIMER ************
+# *** remplacer lettres par *
+mystere = [" * " for lettre in mon_mot]
+print(*mystere)
 print("\nA vous de le trouver ! ")
 essai = 8
 while essai > 0 :
@@ -60,10 +61,9 @@ while essai > 0 :
         coup_rest = essai
     else :
         # *** si lettre ds mot, remplacer * par lettre et pas d'impact sur nb de chances
-#        fin = len(m)
-        print("fin = ", long)  #********** A SUPPRIMER ************
-        i=0
-        if long > 0 :
+        if long > 1 :
+#            print("fin = ", long)  #********** A SUPPRIMER ************
+            i=0
             while i != compte_lettre :
                 rech_lettre = mon_mot.index(choix_lettre)
                 mon_mot[rech_lettre] = "*"
@@ -71,14 +71,15 @@ while essai > 0 :
                 i += 1
             long = long - compte_lettre
         else :
-            break
+            essai = -1
         print(*mystere)
         print("Il vous reste ", essai, " coups")
-        print(long) #********** A SUPPRIMER ************
-                  
+ #       print(long) #********** A SUPPRIMER ************
+
+print("Bravo, vous avez trouvé le mot mystere : ", *mystere )                  
 # *** score
-score = 8-coup_rest
-print(score)
+score = score + coup_rest
+print("\n"pseudo, " , votre score est de : ", score, " points")
 # si mot trouvé avant => score = 8 - nb de mauvais coups joués
 # si mot pas trouvé => perdu ! (score = 0)
 
