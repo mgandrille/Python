@@ -37,32 +37,31 @@ m=mot_mystere[no_mot]
 print("le mot est :", m) #********** A SUPPRIMER ************
 long = len(m)
 print("\nLe mot mystère comporte ", long, " lettres à trouver :")
-# *** extraire le mot sous forme de liste par lettre
-#for lettre in m :
-mon_mot = [ lettre for lettre in m]
+mon_mot = [ lettre for lettre in m]   # *** extraire le mot sous forme de liste par lettre
 #print("mon mot", mon_mot) #********** A SUPPRIMER ************
-# *** remplacer lettres par *
-mystere = [" * " for lettre in mon_mot]
+mystere = [" * " for lettre in mon_mot]   # *** remplace les lettres par une *
 print(*mystere)
 print("\nA vous de le trouver ! ")
 essai = 8
 while essai > 0 :
     choix_lettre = input("\nTapez une lettre :   ")
-    # *** recherche dans le mot si lettre est présente (1 fois ou plusieurs fois)
-#    rech_lettre = m.find(choix_lettre)
+    choix_lettre = choix_lettre.lower()
     compte_lettre = m.count(choix_lettre)
-#    print("recherche = ", rech_lettre, "et nb de lettre = ", compte_lettre) #********** A SUPPRIMER ************
     try :
         rech_lettre = mon_mot.index(choix_lettre)  
     except ValueError :
-        print("Cette lettre n'est pas dans le mot mystère")
-        essai = essai -1
-        print("Il vous reste ", essai, " coups")
-        coup_rest = essai
+        try :
+            choix_lettre != int(choix_lettre)
+        except ValueError :
+            print("Cette lettre n'est pas dans le mot mystère")
+            essai = essai -1
+            print("Il vous reste ", essai, " coups")
+            coup_rest = essai
+        else :
+            print("Etes vous sûr de votre frappe ?")
     else :
         # *** si lettre ds mot, remplacer * par lettre et pas d'impact sur nb de chances
         if long > 1 :
-#            print("fin = ", long)  #********** A SUPPRIMER ************
             i=0
             while i != compte_lettre :
                 rech_lettre = mon_mot.index(choix_lettre)
@@ -71,18 +70,15 @@ while essai > 0 :
                 i += 1
             long = long - compte_lettre
         else :
-            essai = -1
+            print("\nBravo, vous avez trouvé le mot mystere : ", m )
+            break
         print(*mystere)
         print("Il vous reste ", essai, " coups")
- #       print(long) #********** A SUPPRIMER ************
-
-print("Bravo, vous avez trouvé le mot mystere : ", *mystere )                  
 # *** score
 score = score + coup_rest
-print("\n"pseudo, " , votre score est de : ", score, " points")
-# si mot trouvé avant => score = 8 - nb de mauvais coups joués
-# si mot pas trouvé => perdu ! (score = 0)
-
+if coup_rest == 0 :
+    print("\nVous avez perdu !")
+print("\n", pseudo, " , votre score est de : ", score, " points")
 # score final à enregister
 # score final = initial + score partie
 
