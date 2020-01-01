@@ -1,5 +1,5 @@
 
-mot_mystere = ["vision",
+motsPossibles = ["vision",
                         "bateau",
                         "demain",
                         "bijoux",
