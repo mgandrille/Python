@@ -8,41 +8,36 @@ import ZCasino_joueur
 # ****** programme du jeu de la roulette **********
 print("Bienvenue au ZCasino, voici le jeu de la Roulette !")
 
-# choix du joueur
+# appel de variables 'nulles'
 pseudo = 0
 porte_monnaie = 0
 numero_mise = 0
 somme_misee = 0
-
-ZCasino_joueur.Joueur(pseudo, porte_monnaie, numero_mise, somme_misee)
-
-pseudo = input("Quel est votre nom ?")
-Joueur.nom_joueur(pseudo)
-
-porte_monnaie = input("\nAvec quelle somme d'argent souhaitez vous jouer ? ")
-Joueur.argent_joueur(porte_monnaie)
-
+# description du joueur
+joueur1 = ZCasino_joueur.Joueur(pseudo, porte_monnaie, numero_mise, somme_misee)
+pseudo = joueur1.nom_joueur(pseudo)
+porte_monnaie = joueur1.argent_joueur(porte_monnaie)
 # début du jeu
 j=1
 while j != 0 :
         # numéro choisi par le joueur
-        numero_mise = input("\nSur quel numéro souhaitez vous miser (entre 0 et 49) ? : ")
-        num_joueur(numero_mise)
+        numero_mise = joueur1.num_joueur(numero_mise)
         # choisir sa mise
-        somme_misee = input("\nQuelle somme souhaitez vous miser sur ce numéro ? : ")
-        mise_joueur(self, somme_misee)
-        print("\n Votre mise est de {} $ sur le numéro {} \n".format(mise, num_joueur))
+        somme_misee = joueur1.mise_joueur(somme_misee)
+        print("\n Votre mise est de {} $ sur le numéro {} \n".format(joueur1.somme_misee, joueur1.numero_mise))
         # lance la roulette
         print("A vos jeux... La roulette est lancée... \n")
         gagne=random.randrange(50)
         print("Le numéro gagnant est le numéro ", gagne)
         # gains
-        Jeu(gagne, gain)
-        gain_partie(somme_misee, numero_mise, gain)
-        porte_monnaie = porte_monnaie + gain
-        print("Il vous reste donc ", porte_monnaie, " $ pour continuer de jouer.")
+        gain = 0
+        jeu = ZCasino_jeu.Jeu(gagne, gain)
+        gain = jeu.gain_partie(gagne, joueur1.somme_misee, joueur1.numero_mise, gain)
+        # argent restant au joueur
+        joueur1.porte_monnaie = joueur1.porte_monnaie + jeu.gain
+        print("Il vous reste donc ", joueur1.porte_monnaie, " $ pour continuer de jouer.")
         # possibilité de rejouer ou non
-        if porte_monnaie == 0:
+        if joueur1.porte_monnaie == 0:
                 print("\nVous n'avez plus d'argent ! Au revoir et à bientôt au ZCasino ")
                 j=0
         else:
