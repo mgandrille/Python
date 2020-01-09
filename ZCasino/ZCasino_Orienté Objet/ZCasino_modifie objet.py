@@ -35,7 +35,7 @@ while j != 0 :
         gain = jeu.gain_partie(gagne, joueur1.somme_misee, joueur1.numero_mise, gain)
         # argent restant au joueur
         joueur1.porte_monnaie = joueur1.porte_monnaie + jeu.gain
-        print("Il vous reste donc ", joueur1.porte_monnaie, " $ pour continuer de jouer.")
+        print("Il vous reste donc {} $ pour continuer de jouer.".format(joueur1.porte_monnaie))
         # possibilité de rejouer ou non
         if joueur1.porte_monnaie == 0:
                 print("\nVous n'avez plus d'argent ! Au revoir et à bientôt au ZCasino ")
